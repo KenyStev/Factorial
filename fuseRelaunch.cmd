@@ -1,0 +1,1 @@
+-intstyle "ise" -incremental -lib "unisims_ver" -lib "unimacro_ver" -lib "xilinxcorelib_ver" -o "C:/Users/Raim/Documents/Laboratorio/Factorial/fact_tb_isim_beh.exe" -prj "C:/Users/Raim/Documents/Laboratorio/Factorial/fact_tb_beh.prj" "fact_tb" "work.glbl" 

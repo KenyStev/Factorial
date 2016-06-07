@@ -1,0 +1,5 @@
+set -tmpdir "C:/Users/Raim/Documents/Laboratorio/Factorial/xst/projnav.tmp"
+set -xsthdpdir "C:/Users/Raim/Documents/Laboratorio/Factorial/xst"
+elaborate
+-ifn FSM_LOGICA.prj
+-ifmt mixed

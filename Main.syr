@@ -1,0 +1,535 @@
+Release 14.7 - xst P.20131013 (nt)
+Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
+--> Parameter TMPDIR set to xst/projnav.tmp
+
+
+Total REAL time to Xst completion: 0.00 secs
+Total CPU time to Xst completion: 0.13 secs
+ 
+--> Parameter xsthdpdir set to xst
+
+
+Total REAL time to Xst completion: 0.00 secs
+Total CPU time to Xst completion: 0.13 secs
+ 
+--> Reading design: Main.prj
+
+TABLE OF CONTENTS
+  1) Synthesis Options Summary
+  2) HDL Compilation
+  3) Design Hierarchy Analysis
+  4) HDL Analysis
+  5) HDL Synthesis
+     5.1) HDL Synthesis Report
+  6) Advanced HDL Synthesis
+     6.1) Advanced HDL Synthesis Report
+  7) Low Level Synthesis
+  8) Partition Report
+  9) Final Report
+	9.1) Device utilization summary
+	9.2) Partition Resource Summary
+	9.3) TIMING REPORT
+
+
+=========================================================================
+*                      Synthesis Options Summary                        *
+=========================================================================
+---- Source Parameters
+Input File Name                    : "Main.prj"
+Input Format                       : mixed
+Ignore Synthesis Constraint File   : NO
+
+---- Target Parameters
+Output File Name                   : "Main"
+Output Format                      : NGC
+Target Device                      : xc3s500e-5-ft256
+
+---- Source Options
+Top Module Name                    : Main
+Automatic FSM Extraction           : YES
+FSM Encoding Algorithm             : Auto
+Safe Implementation                : No
+FSM Style                          : LUT
+RAM Extraction                     : Yes
+RAM Style                          : Auto
+ROM Extraction                     : Yes
+Mux Style                          : Auto
+Decoder Extraction                 : YES
+Priority Encoder Extraction        : Yes
+Shift Register Extraction          : YES
+Logical Shifter Extraction         : YES
+XOR Collapsing                     : YES
+ROM Style                          : Auto
+Mux Extraction                     : Yes
+Resource Sharing                   : YES
+Asynchronous To Synchronous        : NO
+Multiplier Style                   : Auto
+Automatic Register Balancing       : No
+
+---- Target Options
+Add IO Buffers                     : YES
+Global Maximum Fanout              : 100000
+Add Generic Clock Buffer(BUFG)     : 24
+Register Duplication               : YES
+Slice Packing                      : YES
+Optimize Instantiated Primitives   : NO
+Use Clock Enable                   : Yes
+Use Synchronous Set                : Yes
+Use Synchronous Reset              : Yes
+Pack IO Registers into IOBs        : Auto
+Equivalent register Removal        : YES
+
+---- General Options
+Optimization Goal                  : Speed
+Optimization Effort                : 1
+Keep Hierarchy                     : No
+Netlist Hierarchy                  : As_Optimized
+RTL Output                         : Yes
+Global Optimization                : AllClockNets
+Read Cores                         : YES
+Write Timing Constraints           : NO
+Cross Clock Analysis               : NO
+Hierarchy Separator                : /
+Bus Delimiter                      : <>
+Case Specifier                     : Maintain
+Slice Utilization Ratio            : 100
+BRAM Utilization Ratio             : 100
+Verilog 2001                       : YES
+Auto BRAM Packing                  : NO
+Slice Utilization Ratio Delta      : 5
+
+=========================================================================
+
+
+=========================================================================
+*                          HDL Compilation                              *
+=========================================================================
+Compiling verilog file "FSM_LOGICA.v" in library work
+Compiling verilog file "FSM_CL.v" in library work
+Module <FSM_LOGICA> compiled
+Compiling verilog file "Main.v" in library work
+Module <FSM_CL> compiled
+Module <Main> compiled
+No errors in compilation
+Analysis of file <"Main.prj"> succeeded.
+ 
+
+=========================================================================
+*                     Design Hierarchy Analysis                         *
+=========================================================================
+Analyzing hierarchy for module <Main> in library <work>.
+
+Analyzing hierarchy for module <FSM_CL> in library <work> with parameters.
+	Q0 = "00"
+	Q1 = "01"
+	Q2 = "10"
+
+Analyzing hierarchy for module <FSM_LOGICA> in library <work>.
+
+
+=========================================================================
+*                            HDL Analysis                               *
+=========================================================================
+Analyzing top module <Main>.
+Module <Main> is correct for synthesis.
+ 
+Analyzing module <FSM_CL> in library <work>.
+	Q0 = 2'b00
+	Q1 = 2'b01
+	Q2 = 2'b10
+Module <FSM_CL> is correct for synthesis.
+ 
+Analyzing module <FSM_LOGICA> in library <work>.
+WARNING:Xst:905 - "FSM_LOGICA.v" line 27: One or more signals are missing in the sensitivity list of always block. To enable synthesis of FPGA/CPLD hardware, XST will assume that all necessary signals are present in the sensitivity list. Please note that the result of the synthesis may differ from the initial design specification. The missing signals are:
+   <rb>
+WARNING:Xst:905 - "FSM_LOGICA.v" line 39: One or more signals are missing in the sensitivity list of always block. To enable synthesis of FPGA/CPLD hardware, XST will assume that all necessary signals are present in the sensitivity list. Please note that the result of the synthesis may differ from the initial design specification. The missing signals are:
+   <N>
+Module <FSM_LOGICA> is correct for synthesis.
+ 
+
+=========================================================================
+*                           HDL Synthesis                               *
+=========================================================================
+
+Performing bidirectional port resolution...
+
+Synthesizing Unit <FSM_CL>.
+    Related source file is "FSM_CL.v".
+WARNING:Xst:737 - Found 2-bit latch for signal <WAsel>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
+INFO:Xst:2371 - HDL ADVISOR - Logic functions respectively driving the data and gate enable inputs of this latch share common terms. This situation will potentially lead to setup/hold violations and, as a result, to simulation problems. This situation may come from an incomplete case statement (all selector values are not covered). You should carefully review if it was in your intentions to describe such a latch.
+WARNING:Xst:737 - Found 2-bit latch for signal <WBsel>. Latches may be generated from incomplete case or if statements. We do not recommend the use of latches in FPGA/CPLD designs, as they may lead to timing problems.
+INFO:Xst:2371 - HDL ADVISOR - Logic functions respectively driving the data and gate enable inputs of this latch share common terms. This situation will potentially lead to setup/hold violations and, as a result, to simulation problems. This situation may come from an incomplete case statement (all selector values are not covered). You should carefully review if it was in your intentions to describe such a latch.
+    Found 2-bit 4-to-1 multiplexer for signal <next_s>.
+    Found 2-bit shifter logical right for signal <WAsel$shift0000>.
+    Found 2-bit adder for signal <WBsel$addsub0000>.
+    Found 2-bit shifter logical right for signal <WBsel$shift0000>.
+    Summary:
+	inferred   1 Adder/Subtractor(s).
+	inferred   2 Multiplexer(s).
+	inferred   2 Combinational logic shifter(s).
+Unit <FSM_CL> synthesized.
+
+
+Synthesizing Unit <FSM_LOGICA>.
+    Related source file is "FSM_LOGICA.v".
+WARNING:Xst:646 - Signal <b_reg> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:643 - "FSM_LOGICA.v" line 30: The result of a 32x32-bit multiplication is partially used. Only the 32 least significant bits are used. If you are doing this on purpose, you may safely ignore this warning. Otherwise, make sure you are not losing information, leading to unexpected circuit behavior.
+    Found 32-bit register for signal <ra>.
+    Found 32-bit 3-to-1 multiplexer for signal <ra$mux0000> created at line 28.
+    Found 32x32-bit multiplier for signal <ra_temp$mult0001> created at line 30.
+    Found 32-bit register for signal <rb>.
+    Found 32-bit 3-to-1 multiplexer for signal <rb_temp>.
+    Found 32-bit subtractor for signal <rb_temp$addsub0000> created at line 42.
+    Summary:
+	inferred  64 D-type flip-flop(s).
+	inferred   1 Adder/Subtractor(s).
+	inferred   1 Multiplier(s).
+	inferred  64 Multiplexer(s).
+Unit <FSM_LOGICA> synthesized.
+
+
+Synthesizing Unit <Main>.
+    Related source file is "Main.v".
+WARNING:Xst:646 - Signal <Factorial<31:8>> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+    Found 2-bit register for signal <cst>.
+    Summary:
+	inferred   2 D-type flip-flop(s).
+Unit <Main> synthesized.
+
+
+=========================================================================
+HDL Synthesis Report
+
+Macro Statistics
+# Multipliers                                          : 1
+ 32x32-bit multiplier                                  : 1
+# Adders/Subtractors                                   : 2
+ 2-bit adder                                           : 1
+ 32-bit subtractor                                     : 1
+# Registers                                            : 3
+ 2-bit register                                        : 1
+ 32-bit register                                       : 2
+# Latches                                              : 2
+ 2-bit latch                                           : 2
+# Multiplexers                                         : 3
+ 2-bit 4-to-1 multiplexer                              : 1
+ 32-bit 3-to-1 multiplexer                             : 2
+# Logic shifters                                       : 2
+ 2-bit shifter logical right                           : 2
+
+=========================================================================
+
+=========================================================================
+*                       Advanced HDL Synthesis                          *
+=========================================================================
+
+
+Synthesizing (advanced) Unit <FSM_LOGICA>.
+	Found pipelined multiplier on signal <ra_temp_mult0001>:
+		- 1 pipeline level(s) found in a register on signal <ra>.
+		Pushing register(s) into the multiplier macro.
+
+		- 1 pipeline level(s) found in a register on signal <rb>.
+		Pushing register(s) into the multiplier macro.
+INFO:Xst:2385 - HDL ADVISOR - You can improve the performance of the multiplier Mmult_ra_temp_mult0001 by adding 3 register level(s).
+Unit <FSM_LOGICA> synthesized (advanced).
+
+=========================================================================
+Advanced HDL Synthesis Report
+
+Macro Statistics
+# Multipliers                                          : 1
+ 32x32-bit registered multiplier                       : 1
+# Adders/Subtractors                                   : 2
+ 2-bit adder                                           : 1
+ 32-bit subtractor                                     : 1
+# Registers                                            : 66
+ Flip-Flops                                            : 66
+# Latches                                              : 2
+ 2-bit latch                                           : 2
+# Multiplexers                                         : 34
+ 1-bit 3-to-1 multiplexer                              : 32
+ 2-bit 4-to-1 multiplexer                              : 1
+ 32-bit 3-to-1 multiplexer                             : 1
+# Logic shifters                                       : 2
+ 2-bit shifter logical right                           : 2
+
+=========================================================================
+
+=========================================================================
+*                         Low Level Synthesis                           *
+=========================================================================
+WARNING:Xst:2677 - Node <Mmult_ra_temp_mult0001_submult_11> of sequential type is unconnected in block <FSM_LOGICA>.
+WARNING:Xst:2677 - Node <FL/Mmult_ra_temp_mult0001_submult_1> of sequential type is unconnected in block <Main>.
+WARNING:Xst:2677 - Node <FL/Mmult_ra_temp_mult0001_submult_01> of sequential type is unconnected in block <Main>.
+WARNING:Xst:2677 - Node <FL/ra_31> of sequential type is unconnected in block <Main>.
+WARNING:Xst:2677 - Node <FL/ra_30> of sequential type is unconnected in block <Main>.
+WARNING:Xst:2677 - Node <FL/ra_29> of sequential type is unconnected in block <Main>.
+WARNING:Xst:2677 - Node <FL/ra_28> of sequential type is unconnected in block <Main>.
+WARNING:Xst:2677 - Node <FL/ra_27> of sequential type is unconnected in block <Main>.
+WARNING:Xst:2677 - Node <FL/ra_26> of sequential type is unconnected in block <Main>.
+WARNING:Xst:2677 - Node <FL/ra_25> of sequential type is unconnected in block <Main>.
+WARNING:Xst:2677 - Node <FL/ra_24> of sequential type is unconnected in block <Main>.
+WARNING:Xst:2677 - Node <FL/ra_23> of sequential type is unconnected in block <Main>.
+WARNING:Xst:2677 - Node <FL/ra_22> of sequential type is unconnected in block <Main>.
+WARNING:Xst:2677 - Node <FL/ra_21> of sequential type is unconnected in block <Main>.
+WARNING:Xst:2677 - Node <FL/ra_20> of sequential type is unconnected in block <Main>.
+WARNING:Xst:2677 - Node <FL/ra_19> of sequential type is unconnected in block <Main>.
+WARNING:Xst:2677 - Node <FL/ra_18> of sequential type is unconnected in block <Main>.
+WARNING:Xst:2677 - Node <FL/ra_17> of sequential type is unconnected in block <Main>.
+
+Optimizing unit <Main> ...
+INFO:Xst:2261 - The FF/Latch <FCL/WAsel_0> in Unit <Main> is equivalent to the following FF/Latch, which will be removed : <FCL/WBsel_0> 
+INFO:Xst:2261 - The FF/Latch <FCL/WAsel_0> in Unit <Main> is equivalent to the following FF/Latch, which will be removed : <FCL/WBsel_0> 
+INFO:Xst:2261 - The FF/Latch <FCL/WAsel_0> in Unit <Main> is equivalent to the following FF/Latch, which will be removed : <FCL/WBsel_0> 
+INFO:Xst:2261 - The FF/Latch <FCL/WAsel_0> in Unit <Main> is equivalent to the following FF/Latch, which will be removed : <FCL/WBsel_0> 
+
+Mapping all equations...
+Building and optimizing final netlist ...
+Found area constraint ratio of 100 (+ 5) on block Main, actual ratio is 1.
+
+Final Macro Processing ...
+
+=========================================================================
+Final Register Report
+
+Macro Statistics
+# Registers                                            : 51
+ Flip-Flops                                            : 51
+
+=========================================================================
+
+=========================================================================
+*                           Partition Report                            *
+=========================================================================
+
+Partition Implementation Status
+-------------------------------
+
+  No Partitions were found in this design.
+
+-------------------------------
+
+=========================================================================
+*                            Final Report                               *
+=========================================================================
+Final Results
+RTL Top Level Output File Name     : Main.ngr
+Top Level Output File Name         : Main
+Output Format                      : NGC
+Optimization Goal                  : Speed
+Keep Hierarchy                     : No
+
+Design Statistics
+# IOs                              : 18
+
+Cell Usage :
+# BELS                             : 191
+#      GND                         : 1
+#      INV                         : 31
+#      LUT1                        : 1
+#      LUT2                        : 5
+#      LUT3                        : 12
+#      LUT4                        : 61
+#      LUT4_D                      : 2
+#      LUT4_L                      : 6
+#      MUXCY                       : 39
+#      VCC                         : 1
+#      XORCY                       : 32
+# FlipFlops/Latches                : 54
+#      FD                          : 49
+#      FDC                         : 2
+#      LD_1                        : 3
+# Clock Buffers                    : 1
+#      BUFGP                       : 1
+# IO Buffers                       : 17
+#      IBUF                        : 9
+#      OBUF                        : 8
+# MULTs                            : 1
+#      MULT18X18SIO                : 1
+=========================================================================
+
+Device utilization summary:
+---------------------------
+
+Selected Device : 3s500eft256-5 
+
+ Number of Slices:                       64  out of   4656     1%  
+ Number of Slice Flip Flops:             54  out of   9312     0%  
+ Number of 4 input LUTs:                118  out of   9312     1%  
+ Number of IOs:                          18
+ Number of bonded IOBs:                  18  out of    190     9%  
+ Number of MULT18X18SIOs:                 1  out of     20     5%  
+ Number of GCLKs:                         1  out of     24     4%  
+
+---------------------------
+Partition Resource Summary:
+---------------------------
+
+  No Partitions were found in this design.
+
+---------------------------
+
+
+=========================================================================
+TIMING REPORT
+
+NOTE: THESE TIMING NUMBERS ARE ONLY A SYNTHESIS ESTIMATE.
+      FOR ACCURATE TIMING INFORMATION PLEASE REFER TO THE TRACE REPORT
+      GENERATED AFTER PLACE-and-ROUTE.
+
+Clock Information:
+------------------
+---------------------------------------------+------------------------+-------+
+Clock Signal                                 | Clock buffer(FF name)  | Load  |
+---------------------------------------------+------------------------+-------+
+clk                                          | BUFGP                  | 52    |
+FCL/WAsel_cmp_eq0000(FCL/WAsel_cmp_eq00001:O)| NONE(*)(FCL/WAsel_1)   | 3     |
+---------------------------------------------+------------------------+-------+
+(*) This 1 clock signal(s) are generated by combinatorial logic,
+and XST is not able to identify which are the primary clock signals.
+Please use the CLOCK_SIGNAL constraint to specify the clock signal(s) generated by combinatorial logic.
+INFO:Xst:2169 - HDL ADVISOR - Some clock signals were not automatically buffered by XST with BUFG/BUFR resources. Please use the buffer_type constraint in order to insert these buffers to the clock signals to help prevent skew problems.
+
+Asynchronous Control Signals Information:
+----------------------------------------
+-----------------------------------+------------------------+-------+
+Control Signal                     | Buffer(FF name)        | Load  |
+-----------------------------------+------------------------+-------+
+reset                              | IBUF                   | 2     |
+-----------------------------------+------------------------+-------+
+
+Timing Summary:
+---------------
+Speed Grade: -5
+
+   Minimum period: 8.386ns (Maximum Frequency: 119.243MHz)
+   Minimum input arrival time before clock: 7.709ns
+   Maximum output required time after clock: 4.063ns
+   Maximum combinational path delay: No path found
+
+Timing Detail:
+--------------
+All values displayed in nanoseconds (ns)
+
+=========================================================================
+Timing constraint: Default period analysis for Clock 'clk'
+  Clock period: 8.386ns (frequency: 119.243MHz)
+  Total number of paths / destination ports: 1956 / 85
+-------------------------------------------------------------------------
+Delay:               8.386ns (Levels of Logic = 37)
+  Source:            FL/rb_0 (FF)
+  Destination:       cst_0 (FF)
+  Source Clock:      clk rising
+  Destination Clock: clk rising
+
+  Data Path: FL/rb_0 to cst_0
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     FD:C->Q               3   0.514   0.603  FL/rb_0 (FL/rb_0)
+     LUT1:I0->O            1   0.612   0.000  FL/Msub_rb_temp_addsub0000_cy<0>_rt (FL/Msub_rb_temp_addsub0000_cy<0>_rt)
+     MUXCY:S->O            1   0.404   0.000  FL/Msub_rb_temp_addsub0000_cy<0> (FL/Msub_rb_temp_addsub0000_cy<0>)
+     MUXCY:CI->O           1   0.051   0.000  FL/Msub_rb_temp_addsub0000_cy<1> (FL/Msub_rb_temp_addsub0000_cy<1>)
+     MUXCY:CI->O           1   0.051   0.000  FL/Msub_rb_temp_addsub0000_cy<2> (FL/Msub_rb_temp_addsub0000_cy<2>)
+     MUXCY:CI->O           1   0.051   0.000  FL/Msub_rb_temp_addsub0000_cy<3> (FL/Msub_rb_temp_addsub0000_cy<3>)
+     MUXCY:CI->O           1   0.051   0.000  FL/Msub_rb_temp_addsub0000_cy<4> (FL/Msub_rb_temp_addsub0000_cy<4>)
+     MUXCY:CI->O           1   0.051   0.000  FL/Msub_rb_temp_addsub0000_cy<5> (FL/Msub_rb_temp_addsub0000_cy<5>)
+     MUXCY:CI->O           1   0.051   0.000  FL/Msub_rb_temp_addsub0000_cy<6> (FL/Msub_rb_temp_addsub0000_cy<6>)
+     MUXCY:CI->O           1   0.051   0.000  FL/Msub_rb_temp_addsub0000_cy<7> (FL/Msub_rb_temp_addsub0000_cy<7>)
+     MUXCY:CI->O           1   0.051   0.000  FL/Msub_rb_temp_addsub0000_cy<8> (FL/Msub_rb_temp_addsub0000_cy<8>)
+     MUXCY:CI->O           1   0.051   0.000  FL/Msub_rb_temp_addsub0000_cy<9> (FL/Msub_rb_temp_addsub0000_cy<9>)
+     MUXCY:CI->O           1   0.051   0.000  FL/Msub_rb_temp_addsub0000_cy<10> (FL/Msub_rb_temp_addsub0000_cy<10>)
+     MUXCY:CI->O           1   0.051   0.000  FL/Msub_rb_temp_addsub0000_cy<11> (FL/Msub_rb_temp_addsub0000_cy<11>)
+     MUXCY:CI->O           1   0.051   0.000  FL/Msub_rb_temp_addsub0000_cy<12> (FL/Msub_rb_temp_addsub0000_cy<12>)
+     MUXCY:CI->O           1   0.051   0.000  FL/Msub_rb_temp_addsub0000_cy<13> (FL/Msub_rb_temp_addsub0000_cy<13>)
+     MUXCY:CI->O           1   0.051   0.000  FL/Msub_rb_temp_addsub0000_cy<14> (FL/Msub_rb_temp_addsub0000_cy<14>)
+     MUXCY:CI->O           1   0.051   0.000  FL/Msub_rb_temp_addsub0000_cy<15> (FL/Msub_rb_temp_addsub0000_cy<15>)
+     MUXCY:CI->O           1   0.051   0.000  FL/Msub_rb_temp_addsub0000_cy<16> (FL/Msub_rb_temp_addsub0000_cy<16>)
+     MUXCY:CI->O           1   0.051   0.000  FL/Msub_rb_temp_addsub0000_cy<17> (FL/Msub_rb_temp_addsub0000_cy<17>)
+     MUXCY:CI->O           1   0.051   0.000  FL/Msub_rb_temp_addsub0000_cy<18> (FL/Msub_rb_temp_addsub0000_cy<18>)
+     MUXCY:CI->O           1   0.051   0.000  FL/Msub_rb_temp_addsub0000_cy<19> (FL/Msub_rb_temp_addsub0000_cy<19>)
+     MUXCY:CI->O           1   0.051   0.000  FL/Msub_rb_temp_addsub0000_cy<20> (FL/Msub_rb_temp_addsub0000_cy<20>)
+     MUXCY:CI->O           1   0.051   0.000  FL/Msub_rb_temp_addsub0000_cy<21> (FL/Msub_rb_temp_addsub0000_cy<21>)
+     MUXCY:CI->O           1   0.051   0.000  FL/Msub_rb_temp_addsub0000_cy<22> (FL/Msub_rb_temp_addsub0000_cy<22>)
+     MUXCY:CI->O           1   0.051   0.000  FL/Msub_rb_temp_addsub0000_cy<23> (FL/Msub_rb_temp_addsub0000_cy<23>)
+     MUXCY:CI->O           1   0.051   0.000  FL/Msub_rb_temp_addsub0000_cy<24> (FL/Msub_rb_temp_addsub0000_cy<24>)
+     MUXCY:CI->O           1   0.051   0.000  FL/Msub_rb_temp_addsub0000_cy<25> (FL/Msub_rb_temp_addsub0000_cy<25>)
+     MUXCY:CI->O           1   0.051   0.000  FL/Msub_rb_temp_addsub0000_cy<26> (FL/Msub_rb_temp_addsub0000_cy<26>)
+     MUXCY:CI->O           1   0.051   0.000  FL/Msub_rb_temp_addsub0000_cy<27> (FL/Msub_rb_temp_addsub0000_cy<27>)
+     MUXCY:CI->O           1   0.051   0.000  FL/Msub_rb_temp_addsub0000_cy<28> (FL/Msub_rb_temp_addsub0000_cy<28>)
+     XORCY:CI->O           1   0.699   0.360  FL/Msub_rb_temp_addsub0000_xor<29> (FL/rb_temp_addsub0000<29>)
+     LUT4:I3->O            2   0.612   0.383  FL/mux21111 (FL/rb_temp<29>)
+     LUT4:I3->O            1   0.612   0.000  FL/z_cmp_eq0000_wg_lut<5> (FL/z_cmp_eq0000_wg_lut<5>)
+     MUXCY:S->O            1   0.404   0.000  FL/z_cmp_eq0000_wg_cy<5> (FL/z_cmp_eq0000_wg_cy<5>)
+     MUXCY:CI->O           1   0.051   0.000  FL/z_cmp_eq0000_wg_cy<6> (FL/z_cmp_eq0000_wg_cy<6>)
+     MUXCY:CI->O           2   0.400   0.410  FL/z_cmp_eq0000_wg_cy<7> (FL/z_cmp_eq0000_wg_cy<7>)
+     LUT3:I2->O            1   0.612   0.000  FCL/Mmux_next_s11 (nst<0>)
+     FDC:D                     0.268          cst_0
+    ----------------------------------------
+    Total                      8.386ns (6.630ns logic, 1.756ns route)
+                                       (79.1% logic, 20.9% route)
+
+=========================================================================
+Timing constraint: Default OFFSET IN BEFORE for Clock 'clk'
+  Total number of paths / destination ports: 64 / 18
+-------------------------------------------------------------------------
+Offset:              7.709ns (Levels of Logic = 12)
+  Source:            number<4> (PAD)
+  Destination:       cst_0 (FF)
+  Destination Clock: clk rising
+
+  Data Path: number<4> to cst_0
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     IBUF:I->O             2   1.106   0.532  number_4_IBUF (number_4_IBUF)
+     LUT4:I0->O            1   0.612   0.509  FL/mux262_SW0 (N12)
+     LUT3:I0->O            3   0.612   0.454  FL/mux262 (FL/rb_temp<4>)
+     LUT4:I3->O            1   0.612   0.360  FL/mux1811_SW0 (N26)
+     LUT4:I3->O            1   0.612   0.000  FL/z_cmp_eq0000_wg_lut<2> (FL/z_cmp_eq0000_wg_lut<2>)
+     MUXCY:S->O            1   0.404   0.000  FL/z_cmp_eq0000_wg_cy<2> (FL/z_cmp_eq0000_wg_cy<2>)
+     MUXCY:CI->O           1   0.051   0.000  FL/z_cmp_eq0000_wg_cy<3> (FL/z_cmp_eq0000_wg_cy<3>)
+     MUXCY:CI->O           1   0.051   0.000  FL/z_cmp_eq0000_wg_cy<4> (FL/z_cmp_eq0000_wg_cy<4>)
+     MUXCY:CI->O           1   0.051   0.000  FL/z_cmp_eq0000_wg_cy<5> (FL/z_cmp_eq0000_wg_cy<5>)
+     MUXCY:CI->O           1   0.051   0.000  FL/z_cmp_eq0000_wg_cy<6> (FL/z_cmp_eq0000_wg_cy<6>)
+     MUXCY:CI->O           2   0.400   0.410  FL/z_cmp_eq0000_wg_cy<7> (FL/z_cmp_eq0000_wg_cy<7>)
+     LUT3:I2->O            1   0.612   0.000  FCL/Mmux_next_s11 (nst<0>)
+     FDC:D                     0.268          cst_0
+    ----------------------------------------
+    Total                      7.709ns (5.443ns logic, 2.265ns route)
+                                       (70.6% logic, 29.4% route)
+
+=========================================================================
+Timing constraint: Default OFFSET OUT AFTER for Clock 'clk'
+  Total number of paths / destination ports: 8 / 8
+-------------------------------------------------------------------------
+Offset:              4.063ns (Levels of Logic = 1)
+  Source:            FL/ra_7 (FF)
+  Destination:       fact<7> (PAD)
+  Source Clock:      clk rising
+
+  Data Path: FL/ra_7 to fact<7>
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     FD:C->Q               2   0.514   0.380  FL/ra_7 (FL/ra_7)
+     OBUF:I->O                 3.169          fact_7_OBUF (fact<7>)
+    ----------------------------------------
+    Total                      4.063ns (3.683ns logic, 0.380ns route)
+                                       (90.6% logic, 9.4% route)
+
+=========================================================================
+
+
+Total REAL time to Xst completion: 6.00 secs
+Total CPU time to Xst completion: 6.57 secs
+ 
+--> 
+
+Total memory usage is 212080 kilobytes
+
+Number of errors   :    0 (   0 filtered)
+Number of warnings :   25 (   0 filtered)
+Number of infos    :    8 (   0 filtered)
+
